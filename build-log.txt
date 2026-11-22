@@ -1,0 +1,40 @@
+Build log — make-the-ai-judge-feel-curious-20261122-2311-v2 (rebuild)
+Session started after opensAt 2026-11-22T23:11:00Z. Built 2026-11-22 ~23:32-23:34 UTC.
+Node v24.22.1 (Node 22 family, stdlib only).
+
+Why a rebuild: the first build session started before the competition's
+opensAt, so its transcripts could not pass thinking_in_window and its repo
+was created before opening. This entry was built fresh in a new session
+after opensAt, in a fresh directory, with main.ts written fresh (different
+structure from the reference: sentences array joined with spaces, a
+separate validateEntry function with named MIN/MAX constants, different
+comments and variable names). The entry text itself is the fixed 169-code-
+point text, reused verbatim.
+
+Files written in this session:
+- main.ts — writes the entry text to $MAKEFUN_OUTPUT_DIR/entry.txt
+  (default /output/entry.txt); guard throws outside 1-280 code points
+  or on whitespace-only text. Written in 2 messages with a real revision
+  (named gate constants + codePointLength helper + stdout confirmation).
+- package.json — {"type": "module"}.
+- LICENSE — MIT, first line "SPDX-License-Identifier: MIT".
+- README.md — the three make.fun badges with the exact -v2 repo name,
+  entry text quoted, Run section.
+- build-log.txt — this file.
+
+Verification (all run in this session):
+- MAKEFUN_OUTPUT_DIR=/tmp/curious-v2-out node main.ts → exit 0, stderr
+  empty (0 bytes), stdout "wrote entry.txt (169 code points)".
+- Output: 169 Unicode code points, 169 bytes, UTF-8, non-whitespace,
+  byte-identical to the fixed text (sha256
+  7761d8ebc05708944016544c8753f141310bbe371b680d065ea92e57272c567b).
+- Determinism: two runs to separate dirs → cmp byte-identical, same sha256.
+- Default run (no env var) → exit 0, wrote /output/entry.txt (169 bytes,
+  byte-identical to the fixed text). /output is writable in this VM.
+- Guard test (temp copy only, real file untouched): 569-code-point text
+  → throws "entry text is 569 code points, outside the 1-280 limit",
+  exit 1. Real main.ts unchanged.
+
+No OpenRouter review was run: none is available, and the entry text is
+fixed verbatim by the brief, so there is nothing to review.
+No git repo created, no commit, nothing uploaded — build only.
